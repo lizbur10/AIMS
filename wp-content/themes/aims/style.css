@@ -38,6 +38,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     ## Posts and pages
 	## Asides
 	## Comments
+# Footer
 # Infinite scroll
 # Media
 	## Captions
@@ -52,6 +53,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /* Dark blue */
 /* Black */
 /* Black */
+/* Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+*/
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -371,23 +379,22 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  border: 1px solid;
-  border-color: #ccc #ccc #bbb;
-  border-radius: 3px;
-  background: #e6e6e6;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.8);
+  border: 3px solid;
+  border-color: #fff;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  font-family: "Fira Sans", sans-serif;
   font-size: 12px;
   font-size: 0.75rem;
   line-height: 1;
-  padding: .6em 1em .4em;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
+  padding: .6em 1em .4em; }
   button:hover,
   input[type="button"]:hover,
   input[type="reset"]:hover,
   input[type="submit"]:hover {
-    border-color: #ccc #bbb #aaa;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
+    border-color: #0D1321;
+    color: #fff; }
   button:active, button:focus,
   input[type="button"]:active,
   input[type="button"]:focus,
@@ -395,8 +402,8 @@ input[type="submit"] {
   input[type="reset"]:focus,
   input[type="submit"]:active,
   input[type="submit"]:focus {
-    border-color: #aaa #bbb #bbb;
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
+    border-color: #0D1321;
+    color: #fff; }
 
 input[type="text"],
 input[type="email"],
@@ -485,105 +492,218 @@ a {
 .main-navigation {
   clear: both;
   display: block;
-  float: left;
   width: 100%; }
   .main-navigation ul {
     display: none;
     list-style: none;
     margin: 0;
-    padding-left: 0; }
+    padding-left: 0;
+    background-color: #7ABA94; }
+    .main-navigation ul .toggled-on {
+      display: block; }
+    .main-navigation ul ul {
+      display: none;
+      margin-left: 0.8em; }
   .main-navigation a {
     display: block;
-    padding: 0.8em 0;
+    padding: 0.8em 1em;
     position: relative;
     text-decoration: none;
-    font-weight: normal; }
-
-.main-navigation ul ul {
-  display: none;
-  margin-left: 0.8em; }
-
-.main-navigation ul .toggled-on {
-  display: block; }
-
-.main-navigation li {
-  border-top: 1px solid #eaeaea;
-  border-top: 1px solid rgba(51, 51, 51, 0.1);
-  position: relative; }
+    font-weight: 400;
+    line-height: 1.6em;
+    color: white; }
+    .main-navigation a:hover, .main-navigation a:focus {
+      background: #E8E07D;
+      color: #0D1321; }
+  .main-navigation a, .main-navigation ul ul li:lastchild a {
+    border-bottom: 1px solid white; }
+  .main-navigation ul li:last-child a {
+    border-bottom: none; }
+  .main-navigation li {
+    border-top: 1px solid #eaeaea;
+    border-top: 1px solid rgba(51, 51, 51, 0.1);
+    position: relative; }
 
 .main-navigation .current-menu-item > a,
-.main-navigation .current-menu-ancestor > a {
+.main-navigation .current-menu-ancestor > a,
+.main-navigation .current_page_item > a,
+.main-navigation .current_page_ancestor > a {
   font-weight: 700; }
-
 .main-navigation .nav-menu > ul > li:first-child,
 .main-navigation .nav-menu > li:first-child {
   border-top: 0; }
-
-.main-navigation .menu-item-has-children > a {
+.main-navigation .menu-item-has-children > a,
+.main-navigation .page_item_has_children > a {
   padding-right: 48px; }
-
-.main-navigation .menu-item-description {
-  color: #707070;
-  color: rgba(51, 51, 51, 0.7);
-  font-family: "Noto Sans", sans-serif;
-  font-size: 12px;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  margin-top: 0.5em; }
 
 .no-js .main-navigation ul ul {
   display: block; }
 
 .dropdown-toggle {
-  background-color: transparent;
-  border: 0;
+  position: absolute;
+  height: 27px;
+  width: 27px;
+  top: 12px;
+  right: 12px;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  content: "";
-  height: 42px;
   padding: 0;
-  position: absolute;
+  font-family: 'FontAwesome';
+  background-color: #fff;
+  border: 1px solid #0D1321;
+  content: "";
+  color: #7ABA94;
   text-transform: lowercase;
-  /* Stop screen readers to read the text as capital letters */
-  top: 3px;
-  right: 0;
-  width: 42px; }
-
-.dropdown-toggle:after {
-  color: #333;
-  content: "\f431";
-  font-size: 24px;
-  line-height: 42px;
-  position: relative;
-  top: 0;
-  left: 1px;
-  width: 42px; }
-
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
-  background-color: #eaeaea;
-  background-color: rgba(51, 51, 51, 0.1); }
-
-.dropdown-toggle:focus {
-  outline: 1px solid #c1c1c1;
-  outline: 1px solid rgba(51, 51, 51, 0.3); }
-
-.dropdown-toggle.toggle-on:after {
-  content: "\f432"; }
+  /* Stop screen readers from reading the text as capital letters */ }
+  .dropdown-toggle:after {
+    content: "\f078";
+    font-size: 14px;
+    line-height: 27px;
+    position: relative;
+    top: 0;
+    left: 1px;
+    width: 27px; }
+  .dropdown-toggle:hover, .dropdown-toggle:focus {
+    background-color: #E8E07D;
+    color: #0D1321; }
+  .dropdown-toggle.toggle-on:after {
+    content: "\f077"; }
 
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
   display: block; }
 
-@media screen and (min-width: 37.5em) {
+.menu-toggle {
+  position: fixed;
+  z-index: 100;
+  bottom: 1em;
+  left: 1em;
+  text-transform: uppercase;
+  background-color: #7ABA94;
+  color: #fff;
+  border: solid 2px #fff;
+  transition: all ease-out 400ms; }
+
+.menu-toggle.hide {
+  bottom: -2.5em; }
+
+.toggled .menu-toggle.hide {
+  bottom: 1em; }
+
+@media screen and (min-width: 600px) {
   .menu-toggle {
     display: none; }
 
   .main-navigation ul {
     display: block; } }
+/* Hovering menu */
+.main-navigation.toggled {
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  z-index: 1; }
+
+.main-navigation.toggled ul {
+  max-height: calc(100vh - 8em);
+  overflow-y: auto; }
+
+.main-navigation.toggled ul ul {
+  display: none; }
+
+.main-navigation.toggled ul ul.toggled-on,
+.main-navigation.toggled ul ul.toggled-on > ul {
+  display: block; }
+
+/* Horizontal menu on wide screens */
+@media screen and (min-width: 600px) {
+  /* Position the menu in the header */
+  .main-navigation,
+  .main-navigation.toggled {
+    position: relative;
+    min-height: 3.5em;
+    max-width: 58em;
+    margin: 0 auto;
+    padding: 0 3.5em;
+    background-color: #fff; }
+
+  .nav-menu {
+    padding: .3em 0 0 0;
+    margin-bottom: 3em;
+    background-color: transparent; }
+
+  .main-navigation ul,
+  .main-navigation.toggled ul {
+    max-height: none;
+    padding-left: 0;
+    text-align: center;
+    background-color: #fff; }
+
+  .main-navigation.toggled ul {
+    overflow-y: visible; }
+
+  /* Display the menu items in a horizontal order */
+  .main-navigation li {
+    display: inline-block;
+    border: none; }
+
+  /* Add an outline to the drop-down menus */
+  .main-navigation ul ul {
+    outline: 1px solid #333; }
+
+  /* Left-align drop-down menu items */
+  .main-navigation li li {
+    display: block;
+    text-align: left; }
+
+  .main-navigation a {
+    color: #7ABA94; }
+
+  .main-navigation a,
+  .main-navigation ul ul li:last-child a {
+    border-bottom: none; }
+
+  /* Add an outline on hovered and focused menu items */
+  .main-navigation a:hover,
+  .main-navigation a:focus {
+    background: transparent;
+    text-decoration: underline; }
+
+  /* Create hover and focus contrast on drop-down items */
+  .main-navigation li li a:hover,
+  .main-navigation li li a:focus {
+    background: #eee;
+    color: #000;
+    text-decoration: underline; }
+
+  /* Position drop-down menus absolutely */
+  .main-navigation ul ul.toggled-on {
+    position: absolute;
+    width: 12em;
+    display: block;
+    z-index: 10;
+    margin-left: 0;
+    background: #fff; }
+
+  .main-navigation ul ul ul.toggled-on {
+    position: relative; }
+
+  /* Indent 3rd level drop-down menus */
+  .main-navigation ul ul ul a {
+    padding-left: 2em; }
+
+  /* Simplify the drop-down toggle */
+  .dropdown-toggle {
+    top: 11px;
+    right: 12px;
+    border: none; }
+    .dropdown-toggle:hover, .dropdown-toggle:focus {
+      background-color: inherit; }
+
+  .dropdown-toggle::after {
+    line-height: 27px;
+    width: 27px; } }
 .site-main .comment-navigation, .site-main
 .posts-navigation, .site-main
 .post-navigation {
@@ -657,6 +777,44 @@ a {
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
+.clear:before:before, .clear:before:after,
+.clear:after:before,
+.clear:after:after,
+.entry-content:before:before,
+.entry-content:before:after,
+.entry-content:after:before,
+.entry-content:after:after,
+.comment-content:before:before,
+.comment-content:before:after,
+.comment-content:after:before,
+.comment-content:after:after,
+.site-header:before:before,
+.site-header:before:after,
+.site-header:after:before,
+.site-header:after:after,
+.site-content:before:before,
+.site-content:before:after,
+.site-content:after:before,
+.site-content:after:after,
+.site-footer:before:before,
+.site-footer:before:after,
+.site-footer:after:before,
+.site-footer:after:after {
+  content: "";
+  display: table; }
+.clear:before:after,
+.clear:after:after,
+.entry-content:before:after,
+.entry-content:after:after,
+.comment-content:before:after,
+.comment-content:after:after,
+.site-header:before:after,
+.site-header:after:after,
+.site-content:before:after,
+.site-content:after:after,
+.site-footer:before:after,
+.site-footer:after:after {
+  clear: both; }
 .clear:before,
 .clear:after,
 .entry-content:before,
@@ -669,9 +827,7 @@ a {
 .site-content:after,
 .site-footer:before,
 .site-footer:after {
-  content: "";
-  display: table;
-  table-layout: fixed; }
+  zoom: 1; }
 
 .clear:after,
 .entry-content:after,
@@ -693,6 +849,11 @@ and open the template in the editor.
     Created on : Apr 24, 2016, 11:29:17 AM
     Author     : lizburton
 */
+header img {
+  max-width: 600px;
+  display: block;
+  margin: 0 auto; }
+
 .site-branding {
   text-align: center; }
 
@@ -748,11 +909,25 @@ and open the template in the editor.
   background: black;
   color: white; }
 
+@media screen and (min-width: 400px) {
+  .site-title {
+    font-size: 1.25em; } }
+@media screen and (min-width: 450px) {
+  .site-title {
+    font-size: 1.5em; } }
+@media screen and (min-width: 550px) {
+  .site-title {
+    font-size: 1.75em; } }
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
+.widget-area {
+  max-width: 960px;
+  margin: 0 auto; }
+
 .widget {
   margin: 0 0 1.5em;
+  text-align: center;
   /* Make sure select elements fit in widgets. */ }
   .widget select {
     max-width: 100%; }
@@ -787,15 +962,52 @@ and open the template in the editor.
   line-height: 1.6em;
   margin: 1.4em; }
 
-@media screen and (min-width: 30em) {
+/* Home Page - Image Slider */
+#image-slider {
+  position: relative;
+  height: 266px; }
+
+.image-slider {
+  position: absolute;
+  height: 266px;
+  margin: 1px 0;
+  width: 100%;
+  overflow: hidden; }
+
+.image-slider div {
+  position: absolute;
+  left: 150%; }
+
+.image-slider img {
+  cursor: pointer; }
+
+.slides {
+  position: relative;
+  height: 240px;
+  margin-top: -2rem;
+  padding: 3px;
+  list-style: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: 0 0;
+  overflow: hidden; }
+
+.slider-caption {
+  float: right;
+  margin-top: 15rem;
+  margin-right: 2rem;
+  font-size: 0.9rem;
+  font-style: italic; }
+
+@media screen and (min-width: 360px) {
   .site-main {
     margin: 1.8em; } }
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 480px) {
   .site-main {
     font-size: 1em; } }
-@media screen and (min-width: 57em) {
+@media screen and (min-width: 720px) {
   .site-main {
-    max-width: 45em;
+    max-width: 540px;
     margin: 1.8em auto; } }
 .page-links {
   clear: both;
@@ -816,6 +1028,25 @@ and open the template in the editor.
 
 .bypostauthor {
   display: block; }
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 24, 2016, 11:29:17 AM
+    Author     : lizburton
+*/
+footer {
+  max-width: 960px;
+  margin: 0 auto; }
+  footer .site-info {
+    font-size: 0.8rem;
+    text-align: center; }
 
 /*--------------------------------------------------------------
 # Infinite scroll

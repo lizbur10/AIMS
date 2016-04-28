@@ -24,8 +24,8 @@ $color__text-main: #0D1321; /* Black */
 $color__button-background: #7ABA94; /* Green */
 $color__button-hover: #E8E07D; /* Yellow */
 $color__border-button: #ccc #ccc #bbb;
-$color__border-button-hover: #ccc #bbb #aaa;
-$color__border-button-focus: #aaa #bbb #bbb;
+$color__border-button-hover: $color__black;
+$color__border-button-focus: $color__black;
 $color__border-input: #ccc;
 $color__border-abbr: #666;
 

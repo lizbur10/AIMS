@@ -93,6 +93,121 @@ function aims_content_width() {
 add_action( 'after_setup_theme', 'aims_content_width', 0 );
 
 /**
+* Create "News" custom post type
+*/
+
+add_action('init','create_my_post_types');
+
+function create_my_post_types() {
+	register_post_type('aims_info', array(
+		'labels' => array(
+			'name' => __('Home: AIMS Info'),
+			'singular_name' => __('AIMS Info'),
+			'edit' => __('Edit'),
+			'edit_item' => __('Edit AIMS Info'),
+			'view' => __('View AIMS Info'),
+			'view_item' => __('View AIMS Info'),
+			),
+		'public' => true,
+			'menu_position' => 4,
+			'rewrite' => array('slug' => 'aims_info'),
+			'supports' => array('title','editor','thumbnails'),
+			'taxonomies' => array('category','post_tag'),
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+		)
+	);
+	register_post_type('news_items', array(
+		'labels' => array(
+			'name' => __('Home: News Items'),
+			'singular_name' => __('News Item'),
+			'add_new' => __('Add New'),
+			'add_new_item' => __('Add News Item'),
+			'edit' => __('Edit'),
+			'edit_item' => __('Edit News Item'),
+			'new_item' => __('New News Item'),
+			'view' => __('View News Item'),
+			'view_item' => __('View News Item'),
+			'search_items' => __('Search News Items'),
+			'not_found' => __('No News Items found'),
+			'not_found_in_trash' => __('No News Items found in Trash'),
+			'parent' => __('Parent News Item'),
+			),
+		'public' => true,
+			'menu_position' => 5,
+			'rewrite' => array('slug' => 'news_items'),
+			'supports' => array('title','editor','thumbnails'),
+			'taxonomies' => array('category','post_tag'),
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+		)
+	);
+	register_post_type('current_season', array(
+		'labels' => array(
+			'name' => __('Home: Current Season Info'),
+			'singular_name' => __('Current Season Info'),
+			'add_new' => __('Add Current Season Info'),
+			'add_new_item' => __('Add Current Season Info'),
+			'edit' => __('Edit'),
+			'edit_item' => __('Edit Current Season Info'),
+			'new_item' => __('Current Season Info'),
+			'view' => __('View Current Season Info'),
+			'view_item' => __('View Current Season Info'),
+			'search_items' => __('Search Current Season Info'),
+			'not_found' => __('No Current Season Info found'),
+			'not_found_in_trash' => __('No Current Season Info found in Trash'),
+			'parent' => __('Parent Current Season Info'),
+			),
+		'public' => true,
+			'menu_position' => 6,
+			'rewrite' => array('slug' => 'current_season_info'),
+			'supports' => array('title','editor','thumbnails'),
+			'taxonomies' => array('category','post_tag'),
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+		)
+	);
+	register_post_type('staff_profile', array(
+		'labels' => array(
+			'name' => __('Staff Profiles'),
+			'singular_name' => __('Staff Profile'),
+			'add_new' => __('Add Staff Profile'),
+			'add_new_item' => __('Add Staff Profile'),
+			'edit' => __('Edit'),
+			'edit_item' => __('Edit Staff Profile'),
+			'new_item' => __('New Staff Profile'),
+			'view' => __('View Staff Profile'),
+			'view_item' => __('View Staff Profile'),
+			'search_items' => __('Search Staff Profiles'),
+			'not_found' => __('No Staff Profiles found'),
+			'not_found_in_trash' => __('No Staff Profiles found in Trash'),
+			'parent' => __('Parent Staff Profile'),
+			),
+		'public' => true,
+			'menu_position' => 7,
+			'rewrite' => array('slug' => 'staff_profile'),
+			'supports' => array('title','editor','thumbnails'),
+			'taxonomies' => array('category','post_tag'),
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+		)
+	);
+}
+
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -116,10 +231,16 @@ add_action( 'widgets_init', 'aims_widgets_init' );
 function aims_scripts() {
 	wp_enqueue_style( 'aims-style', get_stylesheet_uri() );
         
-        //Add Google fonts - Marcellus SC and Fira Sans
-        wp_enqueue_style( 'aims-google-fonts', 'https://fonts.googleapis.com/css?family=Marcellus+SC|Fira+Sans:400,400italic,700,700italic');
+    //Add Google fonts - Marcellus SC and Fira Sans
+    wp_enqueue_style( 'aims-google-fonts', 'https://fonts.googleapis.com/css?family=Marcellus+SC|Fira+Sans:400,400italic,700,700italic');
 
-	wp_enqueue_script( 'aims-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    wp_enqueue_style( 'aims-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css');
+
+	wp_enqueue_script( 'aims-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+	wp_localize_script( 'aims-navigation', 'screenReaderText', array(
+		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'aims' ) . '</span>',
+		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'aims' ) . '</span>',
+	) );
 
 	wp_enqueue_script( 'aims-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -127,7 +248,23 @@ function aims_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'aims_scripts' );
+add_action( 'wp_enqueue_scripts', 'aims_scripts' ); 
+
+/* 
+replacing the default "Enter title here" placeholder text in the title input box
+with something more descriptive can be helpful for custom post types 
+place this code in your theme's functions.php or relevant file
+source: http://flashingcursor.com/wordpress/change-the-enter-title-here-text-in-wordpress-963
+*/
+function wpfstop_change_default_title( $title ){
+    $screen = get_current_screen();
+    if ( 'staff_profile' == $screen->post_type ){
+        $title = 'Enter your name';
+    }
+    return $title;
+}
+add_filter( 'enter_title_here', 'wpfstop_change_default_title' );
+
 
 /**
  * Implement the Custom Header feature.
