@@ -20,3 +20,21 @@ a {
 		outline: 0;
 	}
 }
+
+.bottom-nav {
+	@include clearfix();
+	font-size: 0.9em;
+	a.nav-back {
+		float: left;
+		&:before {
+			content: "« ";
+		}
+
+	}
+	a.nav-forward {
+		float: right;
+		&:after {
+			content: " »";
+		}
+	}
+}

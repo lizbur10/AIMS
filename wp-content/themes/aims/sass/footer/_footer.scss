@@ -8,11 +8,15 @@ and open the template in the editor.
     Author     : lizburton
 */
 
-footer {
-	max-width: 960px;
-	margin: 0 auto;
+footer.site-footer {
+	color: #fff;
+    padding: 3em 0 0.1em;
+    background-image: url('img/lovely-grass-wallpaper_cropped.jpg');
+   	background-size: cover;
+	width: 100%;
+	margin: -1.8em auto;
 	.site-info {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		text-align: center;
 	}
 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
 Theme Name: AIMS
 Theme URI: http://underscores.me/
@@ -38,6 +39,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     ## Posts and pages
 	## Asides
 	## Comments
+# Custom-pages
+	## Home
+	## Checklist
 # Footer
 # Infinite scroll
 # Media
@@ -486,6 +490,24 @@ a {
   a:hover, a:active {
     outline: 0; }
 
+.bottom-nav {
+  font-size: 0.9em; }
+  .bottom-nav:before, .bottom-nav:after {
+    content: "";
+    display: table; }
+  .bottom-nav:after {
+    clear: both; }
+  .bottom-nav {
+    zoom: 1; }
+  .bottom-nav a.nav-back {
+    float: left; }
+    .bottom-nav a.nav-back:before {
+      content: "« "; }
+  .bottom-nav a.nav-forward {
+    float: right; }
+    .bottom-nav a.nav-forward:after {
+      content: " »"; }
+
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
@@ -506,7 +528,8 @@ a {
       margin-left: 0.8em; }
   .main-navigation a {
     display: block;
-    padding: 0.8em 1em;
+    font-size: 0.9rem;
+    padding: 0.8em 0.5em;
     position: relative;
     text-decoration: none;
     font-weight: 400;
@@ -541,10 +564,10 @@ a {
 
 .dropdown-toggle {
   position: absolute;
-  height: 27px;
-  width: 27px;
-  top: 12px;
-  right: 12px;
+  height: 20px;
+  width: 20px;
+  top: 7px;
+  right: 26px;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -558,12 +581,12 @@ a {
   /* Stop screen readers from reading the text as capital letters */ }
   .dropdown-toggle:after {
     content: "\f078";
-    font-size: 14px;
-    line-height: 27px;
+    font-size: 10px;
+    line-height: 20px;
     position: relative;
     top: 0;
     left: 1px;
-    width: 27px; }
+    width: 20px; }
   .dropdown-toggle:hover, .dropdown-toggle:focus {
     background-color: #E8E07D;
     color: #0D1321; }
@@ -592,12 +615,17 @@ a {
 .toggled .menu-toggle.hide {
   bottom: 1em; }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 631px) {
   .menu-toggle {
     display: none; }
 
   .main-navigation ul {
     display: block; } }
+@media screen and (min-width: 755px) {
+  .main-navigation a {
+    font-size: 1rem;
+    padding-left: 1em;
+    padding-right: 1em; } }
 /* Hovering menu */
 .main-navigation.toggled {
   position: fixed;
@@ -617,7 +645,7 @@ a {
   display: block; }
 
 /* Horizontal menu on wide screens */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 631px) {
   /* Position the menu in the header */
   .main-navigation,
   .main-navigation.toggled {
@@ -695,15 +723,15 @@ a {
 
   /* Simplify the drop-down toggle */
   .dropdown-toggle {
-    top: 11px;
-    right: 12px;
+    top: 12px;
+    right: 26px;
     border: none; }
     .dropdown-toggle:hover, .dropdown-toggle:focus {
       background-color: inherit; }
 
   .dropdown-toggle::after {
-    line-height: 27px;
-    width: 27px; } }
+    line-height: 20px;
+    width: 20px; } }
 .site-main .comment-navigation, .site-main
 .posts-navigation, .site-main
 .post-navigation {
@@ -850,22 +878,31 @@ and open the template in the editor.
     Author     : lizburton
 */
 header img {
-  max-width: 600px;
+  width: 67%;
+  max-width: 500px;
   display: block;
-  margin: 0 auto; }
+  margin: 1em auto 0; }
 
 .site-branding {
   text-align: center; }
 
 .site-title {
   display: block;
-  margin: 0 1em;
+  margin: 0 1em 1em;
   font-family: "Marcellus SC", serif;
   font-size: 1em;
   line-height: 1.5em;
-  color: inherit;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3; }
+  color: inherit; }
+  .site-title:before, .site-title:after {
+    display: block;
+    content: "";
+    width: 15em;
+    opacity: 0.8;
+    margin: 0 auto; }
+  .site-title:before {
+    border-top: solid 1px #d3d3d3; }
+  .site-title:after {
+    border-bottom: solid 1px #d3d3d3; }
 
 .site-title a:hover,
 .site-title a:focus {
@@ -911,13 +948,16 @@ header img {
 
 @media screen and (min-width: 400px) {
   .site-title {
-    font-size: 1.25em; } }
+    font-size: 1em; } }
 @media screen and (min-width: 450px) {
   .site-title {
-    font-size: 1.5em; } }
+    font-size: 1.25em; } }
 @media screen and (min-width: 550px) {
   .site-title {
-    font-size: 1.75em; } }
+    font-size: 1.5em; } }
+@media screen and (min-width: 640px) {
+  .site-title {
+    font-size: 1.6em; } }
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
@@ -960,55 +1000,22 @@ header img {
 .site-main {
   font-size: 0.8em;
   line-height: 1.6em;
-  margin: 1.4em; }
-
-/* Home Page - Image Slider */
-#image-slider {
-  position: relative;
-  height: 266px; }
-
-.image-slider {
-  position: absolute;
-  height: 266px;
-  margin: 1px 0;
-  width: 100%;
-  overflow: hidden; }
-
-.image-slider div {
-  position: absolute;
-  left: 150%; }
-
-.image-slider img {
-  cursor: pointer; }
-
-.slides {
-  position: relative;
-  height: 240px;
-  margin-top: -2rem;
-  padding: 3px;
-  list-style: none;
-  margin: 0;
-  object-fit: cover;
-  object-position: 0 0;
-  overflow: hidden; }
-
-.slider-caption {
-  float: right;
-  margin-top: 15rem;
-  margin-right: 2rem;
-  font-size: 0.9rem;
-  font-style: italic; }
+  margin: 1.4em;
+  max-width: 640px; }
 
 @media screen and (min-width: 360px) {
   .site-main {
     margin: 1.8em; } }
 @media screen and (min-width: 480px) {
   .site-main {
-    font-size: 1em; } }
-@media screen and (min-width: 720px) {
+    font-size: 1em;
+    margin: 2em 3em; } }
+@media screen and (min-width: 640px) {
   .site-main {
-    max-width: 540px;
-    margin: 1.8em auto; } }
+    margin: 1em auto 3em; } }
+@media screen and (min-width: 840px) {
+  .site-main {
+    margin: 4.8em auto; } }
 .page-links {
   clear: both;
   margin: 0 0 1.5em; }
@@ -1030,6 +1037,236 @@ header img {
   display: block; }
 
 /*--------------------------------------------------------------
+# Home Page
+--------------------------------------------------------------*/
+/* Home Page - Image Slider */
+#image-slider {
+  display: none;
+  position: relative;
+  height: 240px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 8px solid #7ABA94; }
+
+#image-slider div {
+  position: absolute;
+  left: 150%; }
+
+.slides {
+  position: relative;
+  height: 240px;
+  margin-top: -2rem;
+  padding: 3px;
+  list-style: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: 0 0;
+  overflow: hidden; }
+
+.site-main.home-page {
+  margin-bottom: 0.8em; }
+  .site-main.home-page ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+
+.home-general-info h2, .home-general-info p {
+  display: none; }
+
+.home-general-info p:first-of-type {
+  display: block;
+  font-style: italic;
+  text-align: center;
+  max-width: 30em;
+  margin-left: auto;
+  margin-right: auto; }
+
+.home-current-season {
+  background-color: #FFFCE8;
+  /*     background-color: $color__yellow;
+   */
+  margin: 1em -1.8em;
+  padding: 1em 1.8em; }
+  .home-current-season h1 {
+    text-align: center;
+    margin-top: 0; }
+  .home-current-season h3 {
+    margin-top: 3em; }
+  .home-current-season p {
+    margin-bottom: 0.5em; }
+  .home-current-season .date-box {
+    display: block;
+    width: 12em;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #7ABA94;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px #ccc;
+    padding: 0.5em 0; }
+    .home-current-season .date-box h2 {
+      margin: 0;
+      padding: 0; }
+    .home-current-season .date-box p {
+      margin-bottom: 0; }
+  .home-current-season ul li {
+    margin-left: 1em; }
+  .home-current-season li:before {
+    content: "";
+    line-height: 1em;
+    float: left;
+    margin-left: -1em;
+    margin-top: .5em;
+    width: .4em;
+    height: .4em;
+    background-color: #7ABA94;
+    border-radius: 30%; }
+  .home-current-season .new-info span {
+    display: inline-block;
+    font-family: Merriweather, 'Marcellus SC';
+    background-color: #7ABA94;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    padding: 2px 6px;
+    margin-right: 6px;
+    border-radius: 5px;
+    font-size: 0.75em; }
+  .home-current-season .new-info h3 {
+    margin-top: 1.5em; }
+
+.home-news ul {
+  margin: 0 0 0 1em;
+  padding: 0; }
+.home-news li {
+  padding-left: 1em;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: #555; }
+  .home-news li::before {
+    content: "";
+    line-height: 1em;
+    float: left;
+    margin-left: -1em;
+    margin-top: .4em;
+    width: .4em;
+    height: .4em;
+    background-color: #7ABA94;
+    border-radius: 30%; }
+.home-news .news-date {
+  font-weight: bold; }
+.home-news li::after {
+  display: block;
+  content: "";
+  margin: 1em 0 1em -1em;
+  width: 100%;
+  border-bottom: solid 1px #ccc;
+  opacity: 0.5; }
+.home-news li:last-of-type::after {
+  border-bottom: none;
+  margin-bottom: 4em; }
+
+@media screen and (min-width: 840px) {
+  #image-slider {
+    display: block; }
+
+  .home-general-info h2, .home-general-info p {
+    display: block; }
+
+  .home-general-info p:first-of-type {
+    font-style: normal;
+    text-align: left;
+    max-width: inherit;
+    margin: inherit; } }
+@media screen and (min-width: 960px) {
+  .site-main.home-page {
+    position: relative;
+    margin: 4em;
+    margin-bottom: 1em;
+    max-width: 1274px; }
+    .site-main.home-page:before, .site-main.home-page:after {
+      content: "";
+      display: table; }
+    .site-main.home-page:after {
+      clear: both; }
+    .site-main.home-page {
+      zoom: 1; }
+
+  .home-general-info, .home-news {
+    width: 25%; }
+    .home-general-info h2, .home-news h2 {
+      margin-top: 0; }
+
+  .home-general-info {
+    float: left; }
+
+  .home-current-season {
+    width: 40%;
+    float: left;
+    margin: -4em 5% 1em;
+    padding: 3em 2em; }
+
+  .home-news {
+    float: right; }
+    .home-news li:last-of-type:after {
+      margin-bottom: 0; } }
+.checklist td {
+  display: block; }
+.checklist td:nth-of-type(even) {
+  margin-left: 2em; }
+.checklist td:nth-of-type(odd) {
+  font-weight: bold; }
+.checklist tr:first-of-type {
+  display: none; }
+.checklist i {
+  margin-left: -2em;
+  margin-right: 1em; }
+.checklist .other-info {
+  margin-bottom: 5em; }
+  .checklist .other-info:before, .checklist .other-info:after {
+    content: "";
+    display: table; }
+  .checklist .other-info:after {
+    clear: both; }
+  .checklist .other-info {
+    zoom: 1; }
+  .checklist .other-info div:first-of-type {
+    padding-right: 5em; }
+  .checklist .other-info div p {
+    margin: 0; }
+    .checklist .other-info div p.name {
+      font-weight: bold;
+      color: #7ABA94;
+      margin-top: 1em; }
+
+@media screen and (min-width: 680px) {
+  .checklist .column-one {
+    width: 25%; }
+  .checklist .column-two {
+    width: 60%; }
+  .checklist table {
+    border-collapse: separate; }
+    .checklist table h3 {
+      margin-top: 0;
+      margin-bottom: 0; }
+    .checklist table p {
+      margin-bottom: 0; }
+  .checklist td {
+    display: table-cell;
+    margin-left: 3em;
+    padding: 30px;
+    border-bottom: 1px solid #7ABA94; }
+  .checklist tr:first-of-type {
+    display: table-row; }
+  .checklist tr:nth-of-type(3) > td {
+    border-bottom: none; }
+  .checklist td:nth-of-type(odd) {
+    font-weight: normal; }
+  .checklist .other-info div {
+    float: left; } }
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 /*
@@ -1041,11 +1278,15 @@ and open the template in the editor.
     Created on : Apr 24, 2016, 11:29:17 AM
     Author     : lizburton
 */
-footer {
-  max-width: 960px;
-  margin: 0 auto; }
-  footer .site-info {
-    font-size: 0.8rem;
+footer.site-footer {
+  color: #fff;
+  padding: 3em 0 0.1em;
+  background-image: url("img/lovely-grass-wallpaper_cropped.jpg");
+  background-size: cover;
+  width: 100%;
+  margin: -1.8em auto; }
+  footer.site-footer .site-info {
+    font-size: 0.9rem;
     text-align: center; }
 
 /*--------------------------------------------------------------

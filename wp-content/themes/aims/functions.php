@@ -99,6 +99,30 @@ add_action( 'after_setup_theme', 'aims_content_width', 0 );
 add_action('init','create_my_post_types');
 
 function create_my_post_types() {
+	register_post_type('add_staff_to_sched', array(
+		'labels' => array(
+			'name' => __('Staff Member Scheduler'),
+			'singular_name' => __('Staff Member Scheduler'),
+			'add_new' => __('Add new person to schedule'),
+			'add_new_item' => __('Add new person to schedule'),
+			'edit' => __('Edit'),
+			'edit_item' => __("Edit Staff Member's Schedule"),
+			'new_item' => __('Add person to schedule'),
+			'view' => __("View Staff Member's Schedule"),
+			'view_item' => __("View Staff Member's Schedule"),
+			),
+		'public' => true,
+			'menu_position' => 4,
+			'rewrite' => array('slug' => 'add_staff_to_sched'),
+			'supports' => array('title','editor','thumbnails'),
+			'taxonomies' => array('category','post_tag'),
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+		)
+	);
 	register_post_type('aims_info', array(
 		'labels' => array(
 			'name' => __('Home: AIMS Info'),
@@ -109,7 +133,7 @@ function create_my_post_types() {
 			'view_item' => __('View AIMS Info'),
 			),
 		'public' => true,
-			'menu_position' => 4,
+			'menu_position' => 5,
 			'rewrite' => array('slug' => 'aims_info'),
 			'supports' => array('title','editor','thumbnails'),
 			'taxonomies' => array('category','post_tag'),
@@ -137,7 +161,7 @@ function create_my_post_types() {
 			'parent' => __('Parent News Item'),
 			),
 		'public' => true,
-			'menu_position' => 5,
+			'menu_position' => 6,
 			'rewrite' => array('slug' => 'news_items'),
 			'supports' => array('title','editor','thumbnails'),
 			'taxonomies' => array('category','post_tag'),
@@ -152,20 +176,14 @@ function create_my_post_types() {
 		'labels' => array(
 			'name' => __('Home: Current Season Info'),
 			'singular_name' => __('Current Season Info'),
-			'add_new' => __('Add Current Season Info'),
-			'add_new_item' => __('Add Current Season Info'),
 			'edit' => __('Edit'),
 			'edit_item' => __('Edit Current Season Info'),
-			'new_item' => __('Current Season Info'),
 			'view' => __('View Current Season Info'),
 			'view_item' => __('View Current Season Info'),
-			'search_items' => __('Search Current Season Info'),
-			'not_found' => __('No Current Season Info found'),
-			'not_found_in_trash' => __('No Current Season Info found in Trash'),
 			'parent' => __('Parent Current Season Info'),
 			),
 		'public' => true,
-			'menu_position' => 6,
+			'menu_position' => 7,
 			'rewrite' => array('slug' => 'current_season_info'),
 			'supports' => array('title','editor','thumbnails'),
 			'taxonomies' => array('category','post_tag'),
@@ -193,7 +211,7 @@ function create_my_post_types() {
 			'parent' => __('Parent Staff Profile'),
 			),
 		'public' => true,
-			'menu_position' => 7,
+			'menu_position' => 8,
 			'rewrite' => array('slug' => 'staff_profile'),
 			'supports' => array('title','editor','thumbnails'),
 			'taxonomies' => array('category','post_tag'),
@@ -206,6 +224,38 @@ function create_my_post_types() {
 	);
 }
 
+
+/**
+* Code source for createDateRangeArray function: 
+* http://stackoverflow.com/questions/4312439/php-return-all-dates-between-two-dates-in-an-array
+*/
+function createDateRangeArray($strDateFrom,$strDateTo) {
+    // takes two dates formatted as YYYYMMDD and creates an
+    // inclusive array of the dates between the from and to dates.
+    // Returns date as MonYY
+
+    $aryRange=array();
+
+    $iDateFrom=mktime(1,0,0,substr($strDateFrom,4,2),substr($strDateFrom,6,2),substr($strDateFrom,0,4));
+    $iDateTo=mktime(1,0,0,substr($strDateTo,4,2),substr($strDateTo,6,2),substr($strDateTo,0,4));
+
+    if ($iDateTo>=$iDateFrom)
+    {
+        array_push($aryRange,date('M d',$iDateFrom)); // first entry
+        while ($iDateFrom<$iDateTo)
+        {
+            $iDateFrom+=86400; // add 24 hours
+            array_push($aryRange,date('M d',$iDateFrom));
+        }
+    }
+    return $aryRange;
+}
+
+function getStartDay($strDateFrom) {
+    $iDateFrom=mktime(1,0,0,substr($strDateFrom,4,2),substr($strDateFrom,6,2),substr($strDateFrom,0,4));
+    $iStartDay=date( 'w', $iDateFrom); //returns the day of the week as a number: 0=Sunday -> 6=Saturday
+	return $iStartDay;
+}
 
 /**
  * Register widget area.
@@ -232,7 +282,7 @@ function aims_scripts() {
 	wp_enqueue_style( 'aims-style', get_stylesheet_uri() );
         
     //Add Google fonts - Marcellus SC and Fira Sans
-    wp_enqueue_style( 'aims-google-fonts', 'https://fonts.googleapis.com/css?family=Marcellus+SC|Fira+Sans:400,400italic,700,700italic');
+    wp_enqueue_style( 'aims-google-fonts', 'https://fonts.googleapis.com/css?family=Marcellus+SC|Fira+Sans:400,400italic,700,700italic|Merriweather');
 
     wp_enqueue_style( 'aims-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css');
 
@@ -258,10 +308,12 @@ source: http://flashingcursor.com/wordpress/change-the-enter-title-here-text-in-
 */
 function wpfstop_change_default_title( $title ){
     $screen = get_current_screen();
-    if ( 'staff_profile' == $screen->post_type ){
+    if ( 'staff_profile' == $screen->post_type ) :
         $title = 'Enter your name';
-    }
+    elseif ('add_staff_to_sched' == $screen->post_type ) :
+    	$title = 'Enter staff name';
     return $title;
+    endif;
 }
 add_filter( 'enter_title_here', 'wpfstop_change_default_title' );
 

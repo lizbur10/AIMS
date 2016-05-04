@@ -16,7 +16,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<span class="copyright">&copy; 2016 Appledore Island Migration Station</span>
-			<span class="sep"> | </span>
+			<span class="sep"> &bull; </span>
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'aims' ) ); ?>"><?php printf( esc_html__( 'Powered by %s', 'aims' ), 'WordPress' ); ?></p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

@@ -39,6 +39,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     ## Posts and pages
 	## Asides
 	## Comments
+# Custom-pages
+	## Home
+	## Checklist
 # Footer
 # Infinite scroll
 # Media
@@ -102,6 +105,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Content
 --------------------------------------------------------------*/
 @import "site/site";
+
+/*--------------------------------------------------------------
+# Home Page
+--------------------------------------------------------------*/
+@import "custom-pages/home";
+@import "custom-pages/checklist";
 
 /*--------------------------------------------------------------
 # Footer
