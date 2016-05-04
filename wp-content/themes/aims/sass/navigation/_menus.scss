@@ -295,3 +295,25 @@
 		width: 50%;
 	}
 }
+
+//ADDED BY BOB
+
+input {
+	display:none;
+}
+
+label {
+    position: fixed;
+    z-index: 100;
+    bottom: 1em;
+    left: 1em;
+    text-transform: uppercase;
+    background-color: #7ABA94;
+    color: #fff;
+    border: solid 2px #fff;
+}
+
+input#nav-trigger:checked ~ div ul {
+    display: block;
+}
+

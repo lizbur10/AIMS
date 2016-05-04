@@ -63,7 +63,17 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'aims' ); ?></button>
+
+			<!-- ADDED BY BOB -->
+			<input type="checkbox" id="nav-trigger" class="nav-trigger">
+			<label for="nav-trigger">TEST</label>
+
+			<!-- COMMENTED OUT BY BOB 
+
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php // esc_html_e( 'Menu', 'aims' ); ?></button>
+	
+			-->
+
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'nav-menu' ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

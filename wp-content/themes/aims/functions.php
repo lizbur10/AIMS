@@ -236,7 +236,10 @@ function aims_scripts() {
 
     wp_enqueue_style( 'aims-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css');
 
-	wp_enqueue_script( 'aims-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+	//wp_enqueue_script( 'aims-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+	//COMMENTED OUT BY BOB
+	//TURNS OFF JS DRIVEN MENU CONTROLS
+	
 	wp_localize_script( 'aims-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'aims' ) . '</span>',
 		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'aims' ) . '</span>',
