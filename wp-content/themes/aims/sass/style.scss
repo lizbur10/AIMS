@@ -41,6 +41,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Comments
 # Custom-pages
 	## Home
+	## Station Staff
+	## Banding Schedule
 	## Checklist
 # Footer
 # Infinite scroll
@@ -110,6 +112,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Home Page
 --------------------------------------------------------------*/
 @import "custom-pages/home";
+@import "custom-pages/station-staff";
+@import "custom-pages/banding-schedule";
 @import "custom-pages/checklist";
 
 /*--------------------------------------------------------------

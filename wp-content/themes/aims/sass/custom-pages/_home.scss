@@ -54,7 +54,7 @@
 .home-current-season {
     background-color: $color__yellow-light;
 /*     background-color: $color__yellow;
- */    margin: 1em -1.8em;
+ */    margin: 1em 1.5em;
     padding: 1em 1.8em;
     h1 {
         text-align: center;
@@ -92,19 +92,7 @@
         margin-left: 1em;
 
     }
-    li:before {
-            content: "";
-            line-height: 1em; 
-            float: left;
-            margin-left: -1em;
-            margin-top: .5em;
-            width: .4em;
-            height: .4em;
-            background-color: $color__green;
-            border-radius: 30%;
-
-    }
-    .new-info {
+   .new-info {
         span {
             display: inline-block;
             font-family: Merriweather, 'Marcellus SC';
@@ -134,17 +122,6 @@
         line-height: 1.5;
         margin-bottom: 0;
         color: #555;
-        &::before {
-            content: "";
-            line-height: 1em; 
-            float: left;
-            margin-left: -1em;
-            margin-top: .4em;
-            width: .4em;
-            height: .4em;
-            background-color: $color__green;
-            border-radius: 30%;
-        }
     }
     .news-date {
         font-weight: bold;

@@ -31,8 +31,7 @@ get_header(); ?>
             <section class="home-general-info">
                 <h2>AIMS Bird Banding</h2>
                 <p>The Appledore Island Migration Station (AIMS) is located on Appledore Island in the Gulf of Maine. Each spring and fall, AIMS staff &mdash; who are all volunteers and students &mdash; band birds from dawn to dusk, seven days a week, weather permitting.</p>
-                <p>The primary purpose of AIMS is to contribute to research on the migration and stopover ecology of Nearctic-Neotropical migrants. AIMS also provides hands-on educational opportunities for undergraduate and graduate students in the biological sciences. Since the banding station first opened in 1981????, over 120,000 birds have been banded.</p> 
-                <p>Appledore Island is also home to the <a href="http://www.shoalsmarinelaboratory.org/">Shoals Marine Lab</a> (SML). SML provides hands-on educational and research programs in marine science and environmental sustainability. SML acts as host for the banding station and its personnel during migration seasons.</p>
+                <p>Appledore Island is also home to the <a href="http://www.shoalsmarinelaboratory.org/">Shoals Marine Lab</a>. SML provides hands-on educational and research programs in marine science and environmental sustainability. SML hosts the banding station and its personnel during migration seasons.</p>
             </section>
 
             <?php $wp_query = new WP_Query( array( 'post_type' => 'current_season', 'nopaging' => true ) );

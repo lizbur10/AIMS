@@ -41,6 +41,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Comments
 # Custom-pages
 	## Home
+	## Station Staff
+	## Banding Schedule
 	## Checklist
 # Footer
 # Infinite scroll
@@ -366,6 +368,20 @@ dt {
 dd {
   margin: 0 1.5em 1.5em; }
 
+.site-content ul {
+  list-style-type: none;
+  margin-left: 0; }
+  .site-content ul li:before {
+    content: "";
+    line-height: 1em;
+    float: left;
+    margin-left: -1em;
+    margin-top: .5em;
+    width: .4em;
+    height: .4em;
+    background-color: #7ABA94;
+    border-radius: 30%; }
+
 img {
   height: auto;
   /* Make sure images are scaled correctly. */
@@ -491,7 +507,9 @@ a {
     outline: 0; }
 
 .bottom-nav {
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  margin: 0 auto 5em auto;
+  max-width: 90%; }
   .bottom-nav:before, .bottom-nav:after {
     content: "";
     display: table; }
@@ -1010,7 +1028,7 @@ header img {
   .site-main {
     font-size: 1em;
     margin: 2em 3em; } }
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 680px) {
   .site-main {
     margin: 1em auto 3em; } }
 @media screen and (min-width: 840px) {
@@ -1085,7 +1103,7 @@ header img {
   background-color: #FFFCE8;
   /*     background-color: $color__yellow;
    */
-  margin: 1em -1.8em;
+  margin: 1em 1.5em;
   padding: 1em 1.8em; }
   .home-current-season h1 {
     text-align: center;
@@ -1112,16 +1130,6 @@ header img {
       margin-bottom: 0; }
   .home-current-season ul li {
     margin-left: 1em; }
-  .home-current-season li:before {
-    content: "";
-    line-height: 1em;
-    float: left;
-    margin-left: -1em;
-    margin-top: .5em;
-    width: .4em;
-    height: .4em;
-    background-color: #7ABA94;
-    border-radius: 30%; }
   .home-current-season .new-info span {
     display: inline-block;
     font-family: Merriweather, 'Marcellus SC';
@@ -1145,16 +1153,6 @@ header img {
   line-height: 1.5;
   margin-bottom: 0;
   color: #555; }
-  .home-news li::before {
-    content: "";
-    line-height: 1em;
-    float: left;
-    margin-left: -1em;
-    margin-top: .4em;
-    width: .4em;
-    height: .4em;
-    background-color: #7ABA94;
-    border-radius: 30%; }
 .home-news .news-date {
   font-weight: bold; }
 .home-news li::after {
@@ -1212,6 +1210,115 @@ header img {
     float: right; }
     .home-news li:last-of-type:after {
       margin-bottom: 0; } }
+.station-staff h1 {
+  text-align: center; }
+.station-staff h2 {
+  text-align: center;
+  margin-bottom: 0; }
+  .station-staff h2::after {
+    display: block;
+    content: "";
+    width: 4em;
+    margin: 0 auto;
+    opacity: 0.8;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1em; }
+.station-staff .staff-profile {
+  margin-bottom: 5em; }
+.station-staff figure {
+  margin-left: 0;
+  margin-right: 0; }
+.station-staff figcaption h3 {
+  margin-bottom: 0; }
+.station-staff figcaption p {
+  margin-top: 0; }
+.station-staff p {
+  margin: 0; }
+.station-staff .banders h3 {
+  margin: 3em 0 0.5em; }
+  .station-staff .banders h3:first-of-type {
+    margin-top: 0; }
+.station-staff img {
+  margin: 1em 0;
+  max-width: 300px; }
+.station-staff .bandaides {
+  margin-bottom: 5em; }
+
+@media screen and (min-width: 680px) {
+  .station-staff .staff-profile {
+    margin-bottom: 5em; }
+    .station-staff .staff-profile:first-of-type {
+      margin-top: 0; }
+    .station-staff .staff-profile:before, .station-staff .staff-profile:after {
+      content: "";
+      display: table; }
+    .station-staff .staff-profile:after {
+      clear: both; }
+    .station-staff .staff-profile {
+      zoom: 1; }
+    .station-staff .staff-profile p {
+      margin-top: 9em; }
+      .station-staff .staff-profile p:first-of-type {
+        margin-top: 7em; }
+    .station-staff .staff-profile figure {
+      display: inline;
+      float: left;
+      margin-right: 1.5em; } }
+@media screen and (min-width: 960px) {
+  .station-staff .staff-profile {
+    margin-bottom: 1em; }
+    .station-staff .staff-profile:nth-of-type(odd) figure {
+      float: left;
+      margin-right: 2.5em;
+      margin-left: -2.5em; }
+    .station-staff .staff-profile:nth-of-type(even) figure {
+      float: right;
+      margin-left: 2.5em;
+      margin-right: -2.5em; }
+    .station-staff .staff-profile:nth-of-type(even) p {
+      margin-top: 6em; }
+    .station-staff .staff-profile:nth-of-type(even) figcaption {
+      text-align: right; }
+      .station-staff .staff-profile:nth-of-type(even) figcaption p {
+        margin-top: 0; } }
+.banding-schedule {
+  max-width: 960px; }
+  .banding-schedule .column-one, .banding-schedule .column-two, .banding-schedule .column-three, .banding-schedule .column-four, .banding-schedule .column-five, .banding-schedule .column-six, .banding-schedule .column-seven {
+    width: 14%; }
+  .banding-schedule h1 {
+    text-align: center; }
+  .banding-schedule .header-row {
+    display: none; }
+  .banding-schedule td {
+    display: block; }
+    .banding-schedule td span:first-of-type {
+      color: #7ABA94; }
+      .banding-schedule td span:first-of-type::after {
+        content: ": "; }
+    .banding-schedule td span::after {
+      content: ", "; }
+    .banding-schedule td span:last-of-type::after {
+      content: ""; }
+
+@media screen and (min-width: 640px) {
+  .banding-schedule table .header-row.long-day {
+    display: table-row;
+    font-style: italic;
+    text-align: center; }
+  .banding-schedule td {
+    display: table-cell;
+    border: 1px solid #ccc;
+    vertical-align: top;
+    padding: 0.5em; }
+    .banding-schedule td span {
+      display: block; }
+      .banding-schedule td span:first-of-type {
+        text-align: center;
+        margin-bottom: 1em; }
+        .banding-schedule td span:first-of-type::after {
+          content: ""; }
+      .banding-schedule td span::after {
+        content: ""; } }
 .checklist td {
   display: block; }
 .checklist td:nth-of-type(even) {
@@ -1284,7 +1391,7 @@ footer.site-footer {
   background-image: url("img/lovely-grass-wallpaper_cropped.jpg");
   background-size: cover;
   width: 100%;
-  margin: -1.8em auto; }
+  margin: -2em auto; }
   footer.site-footer .site-info {
     font-size: 0.9rem;
     text-align: center; }

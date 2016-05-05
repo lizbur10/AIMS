@@ -19,14 +19,14 @@ $seasonStartDay = getStartDay($seasonStartDate); //0=Sunday -> 6=Saturday
 $scheduleDetailsArray = array(); //The array that will hold volunteer names for each day in the season
 $arrayIndex = 0;
 foreach ( $seasonDatesArray as $seasonDate) :
-    $scheduleDetailsArray[$arrayIndex] = $seasonDate;
+    $scheduleDetailsArray[$arrayIndex] = '<span>' . $seasonDate . '</span>';
     $arrayIndex++;
 endforeach;
 ?>
 
 
     <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
+        <main id="main" class="site-main banding-schedule" role="main">
             <h1><?php wp_title(''); ?></h1>
             <?php $wp_query = new WP_Query( array( 'post_type' => 'add_staff_to_sched', 'nopaging' => true ) );
 
@@ -53,7 +53,7 @@ endforeach;
                                 foreach ( $seasonDatesArray as $seasonDate ) :
                                     foreach ( $personDatesArray as $personDate ) :
                                         if ( $seasonDate == $personDate ) :
-                                            $scheduleDetailsArray[$arrayIndex] .= '<br>' . $name;
+                                            $scheduleDetailsArray[$arrayIndex] .= '<span>' . $name . '</span>';
                                         endif;
                                     endforeach;
                                     $arrayIndex++;
@@ -66,7 +66,15 @@ endforeach;
                     /* Adds header row for calendar */ 
                     ?>
                     <table> 
-                        <tr>
+                        <col class="column-one">
+                        <col class="column-two">
+                        <col class="column-three">
+                        <col class="column-four">
+                        <col class="column-five">
+                        <col class="column-six">
+                        <col class="column-seven">
+ 
+                        <tr class="header-row long-day">
                             <td>Sunday</td>
                             <td>Monday</td>
                             <td>Tuesday</td>
@@ -74,6 +82,15 @@ endforeach;
                             <td>Thursday</td>
                             <td>Friday</td>
                             <td>Saturday</td>
+                        </tr>
+                        <tr class="header-row short-day">
+                            <td>Sun</td>
+                            <td>Mon</td>
+                            <td>Tue</td>
+                            <td>Wed</td>
+                            <td>Thu</td>
+                            <td>Fri</td>
+                            <td>Sat</td>
                         </tr>
 
                     <?php 
@@ -110,12 +127,12 @@ endforeach;
             endif;
         ?>
 
-            <section class="bottom-nav">
-                <a class="nav-forward" href="<?php echo get_stylesheet_directory_uri(); ?>/volunteer-checklist">Volunteer Checklist</a>
-            </section>
 
 
         </main><!-- #main -->
+            <section class="bottom-nav">
+                <a class="nav-forward" href="<?php echo get_stylesheet_directory_uri(); ?>/volunteer-checklist">Volunteer Checklist</a>
+            </section>
     </div><!-- #primary -->
 
 <?php

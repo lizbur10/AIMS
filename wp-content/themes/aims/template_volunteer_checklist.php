@@ -9,7 +9,7 @@ get_header();
     <div id="primary" class="content-area">
         <main id="main" class="site-main checklist" role="main">
 
-            <h2>Volunteer Checklist</h2>
+            <h1>Volunteer Checklist</h1>
             <p>Once you're on the schedule, please be sure to complete the items below.</p> 
             <table>
                 <col class="column-one">
@@ -29,12 +29,12 @@ get_header();
                         <p><strong>Note</strong>: all scheduled volunteers need to submit new forms for 2016, even if they submitted forms recently.</p></td>
                 </tr>
                 <tr>
-                    <td>Several days before you go:</td>
+                    <td>The day before you go:</td>
                     <td><i class="fa fa-check-square-o" aria-hidden="true"></i><a href="mailto:alh229@cornell.edu">Confirm your boat reservations with Alexa</a></td>
                 </tr>
                 <tr>
                     <td>While on the island:</td>
-                    <td><i class="fa fa-check-square-o" aria-hidden="true"></i>Pay your boat fees ($40 --round trip????) to the Island Coordinator.</td>
+                    <td><i class="fa fa-check-square-o" aria-hidden="true"></i>Pay your boat fees ($40 round trip) to the Island Coordinator.</td>
                 </tr>
             </table>
 
@@ -53,13 +53,13 @@ get_header();
                 </div>
             </section>
 
+
+        </main><!-- #main -->
             <section class="bottom-nav">
                 <a class="nav-back" href="<?php echo get_stylesheet_directory_uri(); ?>/volunteer-schedule">Banding Schedule</a>
                 <a class="nav-forward" href="<?php echo get_stylesheet_directory_uri(); ?>/volunteer-resources">Volunteer Resources</a>
             </section>
 
-
-        </main><!-- #main -->
     </div><!-- #primary -->
 
 <?php
