@@ -123,27 +123,6 @@ function create_my_post_types() {
 			'hierarchical' => false,
 		)
 	);
-	register_post_type('aims_info', array(
-		'labels' => array(
-			'name' => __('Home: AIMS Info'),
-			'singular_name' => __('AIMS Info'),
-			'edit' => __('Edit'),
-			'edit_item' => __('Edit AIMS Info'),
-			'view' => __('View AIMS Info'),
-			'view_item' => __('View AIMS Info'),
-			),
-		'public' => true,
-			'menu_position' => 5,
-			'rewrite' => array('slug' => 'aims_info'),
-			'supports' => array('title','editor','thumbnails'),
-			'taxonomies' => array('category','post_tag'),
-			'publicly_queryable' => true,
-			'show_ui' => true,
-			'query_var' => true,
-			'capability_type' => 'post',
-			'hierarchical' => false,
-		)
-	);
 	register_post_type('news_items', array(
 		'labels' => array(
 			'name' => __('Home: News Items'),

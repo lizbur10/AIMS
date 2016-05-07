@@ -23,7 +23,7 @@ $(document).ready(function() {
 	counter = 1;
 
 	if (document.documentElement.clientWidth > 839) {
-		window.setInterval(runSlider, 5000);
+		window.setInterval(runSlider, 4000);
 	}
 
 	function runSlider() {

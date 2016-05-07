@@ -12,7 +12,7 @@ get_header();
             <h1>Volunteer Resources</h1>
             <p>Below are links to some helpful information for volunteers and students coming to Appledore:</p>
             <ul>
-                <li><a target="_blank" href="http://localhost:8888/aims/suggested-packing-list/">Suggested packing list</a> (there is also a suggested packing list attached to the <a target="_blank" href="http://www.shoalsmarinelaboratory.org/sites/shoalsmarinelaboratory.org/files/media/pdf/VisitorForms/sml_researcher_forms_2016.pdf">SML volunteer forms</a>)</li>
+                <li><a href="<?php echo get_stylesheet_directory_uri(); ?>/suggested-packing-list/">Suggested packing list</a> (there is also a suggested packing list attached to the <a target="_blank" href="http://www.shoalsmarinelaboratory.org/sites/shoalsmarinelaboratory.org/files/media/pdf/VisitorForms/sml_researcher_forms_2016.pdf">SML volunteer forms</a>)</li>
 
                 <li><a target="_blank" href="http://www.shoalsmarinelaboratory.org/getting-shoals-researchers">Parking and Directions</a> (this is a page on the SML website)</li>
 

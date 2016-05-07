@@ -508,7 +508,7 @@ a {
 
 .bottom-nav {
   font-size: 0.9em;
-  margin: 0 auto 5em auto;
+  margin: 0 auto 3em auto;
   max-width: 90%; }
   .bottom-nav:before, .bottom-nav:after {
     content: "";
@@ -1019,6 +1019,7 @@ header img {
   font-size: 0.8em;
   line-height: 1.6em;
   margin: 1.4em;
+  margin-bottom: 3em;
   max-width: 640px; }
 
 @media screen and (min-width: 360px) {
@@ -1065,6 +1066,13 @@ header img {
   width: 100%;
   overflow: hidden;
   border-bottom: 8px solid #7ABA94; }
+  #image-slider:before, #image-slider:after {
+    content: "";
+    display: table; }
+  #image-slider:after {
+    clear: both; }
+  #image-slider {
+    zoom: 1; }
 
 #image-slider div {
   position: absolute;
@@ -1081,8 +1089,17 @@ header img {
   object-position: 0 0;
   overflow: hidden; }
 
+.slider-caption {
+  display: none;
+  float: right;
+  margin-top: -4.5em;
+  margin-right: -2em;
+  font-size: 0.85rem;
+  font-style: italic;
+  z-index: 100; }
+
 .site-main.home-page {
-  margin-bottom: 0.8em; }
+  margin-bottom: 3em; }
   .site-main.home-page ul {
     list-style-type: none;
     margin: 0;
@@ -1098,6 +1115,19 @@ header img {
   max-width: 30em;
   margin-left: auto;
   margin-right: auto; }
+
+.nabc-certs {
+  max-width: 400px;
+  margin: 0 auto 3em auto;
+  padding: 1em 1em 1em 2em;
+  margin-bottom: 2em;
+  border: 2px solid #466893;
+  background-color: #FFF6BF; }
+  .nabc-certs ul li:before {
+    display: none; }
+  .nabc-certs i {
+    margin-left: -1em;
+    color: #466893; }
 
 .home-current-season {
   background-color: #FFFCE8;
@@ -1170,6 +1200,9 @@ header img {
   #image-slider {
     display: block; }
 
+  .slider-caption {
+    display: block; }
+
   .home-general-info h2, .home-general-info p {
     display: block; }
 
@@ -1199,6 +1232,8 @@ header img {
 
   .home-general-info {
     float: left; }
+    .home-general-info .nabc-certs {
+      margin-left: -1em; }
 
   .home-current-season {
     width: 40%;
@@ -1299,6 +1334,10 @@ header img {
       content: ", "; }
     .banding-schedule td span:last-of-type::after {
       content: ""; }
+  .banding-schedule .date-updated {
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: -1em; }
 
 @media screen and (min-width: 640px) {
   .banding-schedule table .header-row.long-day {
@@ -1368,7 +1407,8 @@ header img {
   .checklist tr:first-of-type {
     display: table-row; }
   .checklist tr:nth-of-type(3) > td {
-    border-bottom: none; }
+    border-bottom: none;
+    padding-bottom: 0; }
   .checklist td:nth-of-type(odd) {
     font-weight: normal; }
   .checklist .other-info div {

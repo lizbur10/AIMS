@@ -5,7 +5,7 @@ Template Name: Schedule Page Template
 
 get_header(); 
 //The following four variables need to be hard-coded for each season (until I figure out a better way)
-$seasonStartDate = '20160510'; //Must be formatted YYYYMMDD
+$seasonStartDate = '20160511'; //Must be formatted YYYYMMDD
 $seasonEndDate = '20160608';  
 $seasonName = 'Spring 2016'; //These are embarrassing but not a priority at the moment
 $nextSeasonName = 'fall';
@@ -13,8 +13,12 @@ $nextSeasonName = 'fall';
 
 $roleLoopArray=array('Bander','Bandaide','MARS'); //this array controls the order names are listed in
 
+$new_found = false; //these variable control whether the new volunteer and MARS messages print at the bottom of the page
+$mars_found = false; 
+
 $seasonDatesArray = createDateRangeArray($seasonStartDate,$seasonEndDate);
 $seasonStartDay = getStartDay($seasonStartDate); //0=Sunday -> 6=Saturday
+$dateUpdated = $seasonStartDate;
 
 $scheduleDetailsArray = array(); //The array that will hold volunteer names for each day in the season
 $arrayIndex = 0;
@@ -42,10 +46,18 @@ endforeach;
 
                         while ( $wp_query->have_posts() ) : $wp_query->the_post(); 
                             $arrayIndex = 0;
+                            if ( $dateUpdated < get_the_date() ) :
+                                $dateUpdated = get_the_date();
+                            endif;
                             if ($role == get_field('role') ) :
                                 $name = get_the_title();
                                 if (get_field('new_volunteer') == 'Yes') :
                                     $name .= '*';
+                                    $new_found = true;
+                                endif;
+                                if ($role == "MARS") :
+                                    $name .= ' (M)';
+                                    $mars_found = true;
                                 endif;
                                 $personStartDate = get_field('start_date');
                                 $personEndDate = get_field('end_date');
@@ -121,9 +133,15 @@ endforeach;
                     <?php else : ?>
                         </table>
                     <?php endif; ?>
-                    <p>* refers to new assistants to the station.  Please help them feel welcome.</p>
 
+                    <p class="date-updated">Last updated: <?php echo $dateUpdated ?></p>
+                    <?php if ($new_found): ?>
+                        <p>* refers to new assistants to the station.  Please help them feel welcome.</p>
+                    <?php endif;
+                    if ($mars_found): ?>
+                        <p>(M) refers to students running the Mobile Avian Recording Studio trailer (MARS).</p>
             <?php 
+                    endif;
             endif;
         ?>
 

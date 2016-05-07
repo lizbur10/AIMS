@@ -1,6 +1,7 @@
 /* Home Page - Image Slider */
 
 #image-slider {
+    @include clearfix();
     display: none;
     position: relative;
     height: 240px;
@@ -27,13 +28,23 @@
     overflow: hidden;
 }
 
+.slider-caption {
+    display: none;
+    float: right;
+    margin-top: -4.5em;
+    margin-right: -2em;
+    font-size: 0.85rem;
+    font-style: italic;
+    z-index: 100;
+}
+
 .site-main.home-page {
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
     }
-    margin-bottom: 0.8em;
+    margin-bottom: 3em;
 }
 
 .home-general-info h2, .home-general-info p {
@@ -47,6 +58,22 @@
     max-width: 30em;
     margin-left: auto;
     margin-right: auto;
+}
+
+.nabc-certs {
+    max-width: 400px;
+    margin: 0 auto 3em auto;
+    padding: 1em 1em 1em 2em;
+    margin-bottom: 2em;
+    border: 2px solid $color__blue-medium;
+    background-color: $color__yellow-medium;
+    ul li:before {
+        display: none;
+    }
+    i {
+        margin-left: -1em;
+        color: $color__blue-medium;
+    }
 }
 
 
@@ -146,6 +173,9 @@
     #image-slider {
         display: block;
     }
+    .slider-caption {
+        display: block;
+    }
     .home-general-info h2, .home-general-info p {
         display: block;
     }
@@ -174,6 +204,9 @@
     }
     .home-general-info {
         float: left;
+        .nabc-certs {
+            margin-left: -1em;
+        }
     }
 
     .home-current-season {
