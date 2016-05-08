@@ -4,10 +4,11 @@ Template Name: Schedule Page Template
 */
 
 get_header(); 
+
 //The following four variables need to be hard-coded for each season (until I figure out a better way)
 $seasonStartDate = '20160511'; //Must be formatted YYYYMMDD
 $seasonEndDate = '20160608';  
-$seasonName = 'Spring 2016'; //These are embarrassing but not a priority at the moment
+$seasonName = 'Spring 2016'; 
 $nextSeasonName = 'fall';
 //End hard-coding section
 
@@ -32,7 +33,22 @@ endforeach;
     <div id="primary" class="content-area">
         <main id="main" class="site-main banding-schedule" role="main">
             <h1><?php wp_title(''); ?></h1>
-            <?php $wp_query = new WP_Query( array( 'post_type' => 'add_staff_to_sched', 'nopaging' => true ) );
+            <?php 
+            //$wp_query = new WP_Query( array( 'post_type' => 'add_staff_to_sched', 'nopaging' => true ) );
+
+            $wp_query = new WP_Query( array(
+                'post_type' => 'add_staff_to_sched',
+                'nopaging' => true,
+                'meta_query' => array(
+                    'start_date_clause' => array(
+                        'key' => 'start_date',
+                        'compare' => 'EXISTS',
+                    ), 
+                ),
+                'orderby' => array(
+                    'start_date_clause' => 'ASC',
+            ) ) );
+
 
             //Checks if there are any volunteers scheduled and, if not, returns an appropriate message 
                 if ( !( $wp_query->have_posts() ) ): ?>
@@ -41,38 +57,49 @@ endforeach;
                 <?php else: 
 
                     foreach ( $roleLoopArray as $role ) :
-
                     // Populates volunteer names into the array of dates 
 
-                        while ( $wp_query->have_posts() ) : $wp_query->the_post(); 
-                            $arrayIndex = 0;
-                            if ( $dateUpdated < get_the_date() ) :
-                                $dateUpdated = get_the_date();
-                            endif;
-                            if ($role == get_field('role') ) :
-                                $name = get_the_title();
-                                if (get_field('new_volunteer') == 'Yes') :
-                                    $name .= '*';
-                                    $new_found = true;
-                                endif;
-                                if ($role == "MARS") :
-                                    $name .= ' (M)';
-                                    $mars_found = true;
+                            while ( $wp_query->have_posts() ) : $wp_query->the_post(); 
+                                $arrayIndex = 0;
+                                if ( $dateUpdated < get_the_date() ) :
+                                    $dateUpdated = get_the_date();
                                 endif;
                                 $personStartDate = get_field('start_date');
                                 $personEndDate = get_field('end_date');
                                 $personDatesArray = createDateRangeArray($personStartDate,$personEndDate);
-                                foreach ( $seasonDatesArray as $seasonDate ) :
-                                    foreach ( $personDatesArray as $personDate ) :
-                                        if ( $seasonDate == $personDate ) :
-                                            $scheduleDetailsArray[$arrayIndex] .= '<span>' . $name . '</span>';
-                                        endif;
-                                    endforeach;
-                                    $arrayIndex++;
-                                endforeach;
-                            endif;
-                        endwhile; 
-                        $wp_query = new WP_Query( array( 'post_type' => 'add_staff_to_sched', 'nopaging' => true ) );
+                                    if ($role == get_field('role') ) :
+                                        $personStartDate = get_field('start_date');
+                                        $personEndDate = get_field('end_date');
+                                        $personDatesArray = createDateRangeArray($personStartDate,$personEndDate);
+                                        foreach ( $seasonDatesArray as $seasonDate ) :
+                                            foreach ( $personDatesArray as $personDate ) :
+                                                if ( $seasonDate == $personDate ) :
+                                                    $name = get_the_title();
+                                                    if(have_rows('specify_tentative_dates')): 
+                                                        while(have_rows('specify_tentative_dates')): 
+                                                            the_row();
+
+                                                            if ( get_sub_field('tentative_date') == $personDate ) : 
+                                                                $name = $name . '?';
+                                                            endif;
+                                                        endwhile;
+                                                    endif;
+
+                                                    if ( (get_field('new_volunteer') == 'Yes') && (strpos($name,'*') == false )) :
+                                                        $name .= '*';
+                                                        $new_found = true;
+                                                    endif;
+                                                    if ( ($role == "MARS") && (strpos($name,'(M)') == false )) :
+                                                        $name .= ' (M)';
+                                                        $mars_found = true;
+                                                    endif;
+                                                    $scheduleDetailsArray[$arrayIndex] .= '<span>' . $name . '</span>';
+                                                endif;
+                                            endforeach;
+                                            $arrayIndex++;
+                                        endforeach;
+                                    endif;
+                            endwhile; 
                     endforeach; 
 
                     /* Adds header row for calendar */ 

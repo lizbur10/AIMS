@@ -1,25 +1,31 @@
 /* Home Page - Image Slider */
 
 #image-slider {
-    @include clearfix();
     display: none;
     position: relative;
-    height: 240px;
+    height: 276px;
     width: 100%;
     overflow: hidden;
-    border-bottom: 8px solid $color__green;
-}
-
-
-#image-slider div {
-    position: absolute;
-    left: 150%;
+    div {
+        position: absolute;
+        left: 150%;
+    }
+    &:after {
+        content: "";
+        display: block;
+        margin-top: 237px;
+        width: 100%;
+        height: 8px;
+        background-color: $color__green;
+    }
 }
 
 .slides {
+    @include clearfix();
     position: relative;
     height: 240px;
     margin-top: -2rem;
+    margin-bottom: 26px;
     padding: 3px;
     list-style: none;
     margin: 0;
@@ -31,9 +37,10 @@
 .slider-caption {
     display: none;
     float: right;
-    margin-top: -4.5em;
-    margin-right: -2em;
-    font-size: 0.85rem;
+    margin-top: 245px;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-size: 0.9em;
     font-style: italic;
     z-index: 100;
 }
@@ -65,7 +72,7 @@
     margin: 0 auto 3em auto;
     padding: 1em 1em 1em 2em;
     margin-bottom: 2em;
-    border: 2px solid $color__blue-medium;
+    border: 1px solid $color__blue-medium;
     background-color: $color__yellow-medium;
     ul li:before {
         display: none;
@@ -83,6 +90,7 @@
 /*     background-color: $color__yellow;
  */    margin: 1em 1.5em;
     padding: 1em 1.8em;
+    z-index: 2;
     h1 {
         text-align: center;
         margin-top: 0;
@@ -139,6 +147,7 @@
 }
 
 .home-news {
+    margin-bottom: 2em;
     ul {
         margin: 0 0 0 1em;
         padding: 0;
@@ -175,6 +184,9 @@
     }
     .slider-caption {
         display: block;
+        width: 100%;
+        text-align: right;
+        overflow: visible;
     }
     .home-general-info h2, .home-general-info p {
         display: block;

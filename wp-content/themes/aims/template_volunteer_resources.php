@@ -21,7 +21,7 @@ get_header();
                 <li><a target="_blank" href="http://www.ndbc.noaa.gov/station_page.php?station=iosn3">Current Isles of Shoals weather conditions</a></li>
 
 
-                <li><a target="_blank" href="http://soot.sr.unh.edu/airmap/archive/is/images/">Appledore radar tower cams</a><span style="color: red;"> &mdash;Note: the cameras are currently out of commission and the images are not live.</span></li>
+                <li><a target="_blank" href="https://www.sondroyo.com/pages/sml/">Appledore radar tower cams</a></li>
             </ul>
 
 

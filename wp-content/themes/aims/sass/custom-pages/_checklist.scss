@@ -16,6 +16,10 @@
 		margin-left: -2em;
 		margin-right: 1em;
 	}
+	.note {
+		font-weight: bold;
+		color: $color__blue-medium;
+	}
 	.other-info {
 		@include clearfix();
 		margin-bottom: 5em;
