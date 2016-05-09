@@ -110,29 +110,36 @@
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
+	li:last-of-type {
+		padding-bottom: 2.5em;
+	}
+	li li:last-of-type {
+		padding-bottom: 0;
+	}
 }
 
 .menu-toggle {
 	position: fixed;
 	z-index: 100;
-	bottom: 1em;
-	left: 1em;
+	bottom: 1.5em;
+	left: 1.5em;
 	text-transform: uppercase;
 	background-color: $color__green;
 	color: #fff;
+	padding: 10px 12px;
 	border: solid 2px #fff;
-	transition: all ease-out 400ms;
+	transition: all ease-out 800ms;
 }
 
 .menu-toggle.hide {
-	bottom: -2.5em;
+	bottom: -3.5em;
 }
 
 .toggled .menu-toggle.hide {
-	bottom: 1em;
+	bottom: 1.5em;
 }
 
-@media screen and (min-width: 631px) {
+@media screen and (min-width: 635px) {
 	.menu-toggle {
 		display: none;
 	}
@@ -173,7 +180,7 @@
 }
 
 /* Horizontal menu on wide screens */
-@media screen and (min-width: 631px) {
+@media screen and (min-width: 635px) {
 	
 	/* Position the menu in the header */
 	.main-navigation,

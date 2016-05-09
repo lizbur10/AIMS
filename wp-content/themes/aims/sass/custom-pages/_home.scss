@@ -72,8 +72,9 @@
     margin: 0 auto 3em auto;
     padding: 1em 1em 1em 2em;
     margin-bottom: 2em;
-    border: 1px solid $color__blue-medium;
-    background-color: $color__yellow-medium;
+    border-top: 1px solid $color__yellow;
+    border-bottom: 1px solid $color__yellow;
+    background-color: $color__yellow-light;
     ul li:before {
         display: none;
     }
@@ -221,7 +222,17 @@
         }
     }
 
+    .nabc-certs {
+        background-color: $color__yellow-medium;
+        border: 1px solid $color__yellow;
+    }
+
     .home-current-season {
+        background-color: $color__yellow-light;
+        background: -webkit-linear-gradient(bottom, $color__yellow, white); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom, $color__yellow, white); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom, $color__yellow, white); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(bottom, $color__yellow, white); /* Standard syntax */
         width: 40%;
         float: left;
         margin: -4em 5% 1em;
@@ -233,5 +244,11 @@
         li:last-of-type:after {
             margin-bottom: 0;
         }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .site-main.home-page {
+        margin: 4em auto 1em;
     }
 }

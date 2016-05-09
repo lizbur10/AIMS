@@ -161,12 +161,14 @@ endforeach;
                         </table>
                     <?php endif; ?>
 
-                    <p class="date-updated">Last updated: <?php echo $dateUpdated ?></p>
-                    <?php if ($new_found): ?>
-                        <p>* refers to new assistants to the station.  Please help them feel welcome.</p>
-                    <?php endif;
-                    if ($mars_found): ?>
-                        <p>(M) refers to students running the Mobile Avian Recording Studio trailer (MARS).</p>
+                    <div class="after-schedule-content">
+                        <p class="date-updated">Last updated: <?php echo $dateUpdated ?></p>
+                        <?php if ($new_found): ?>
+                            <p>* refers to new assistants to the station.  Please help them feel welcome.</p>
+                        <?php endif;
+                        if ($mars_found): ?>
+                            <p>(M) refers to students running the Mobile Avian Recording Studio trailer (MARS).</p>
+                    </div>
             <?php 
                     endif;
             endif;

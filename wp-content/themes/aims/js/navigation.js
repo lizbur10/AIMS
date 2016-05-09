@@ -83,8 +83,11 @@
 		container.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
 
 		// Toggle buttons and submenu items with active children menu items.
+
+	if (document.documentElement.clientWidth < 631) {
 		container.find( '.current-menu-ancestor > button' ).addClass( 'toggle-on' );
 		container.find( '.current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
+}
 
 		container.find( '.dropdown-toggle' ).click( function( e ) {
 			var _this = $( this );

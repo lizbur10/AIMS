@@ -37,48 +37,33 @@ $seasonLoopArray=array('Spring', 'Fall', 'Unknown');
             if ( $wp_query->have_posts() ): ?>
                 <h1>Meet the AIMS Staff</h1>
                 <?php foreach ( $roleLoopArray as $role ) :
-/*                    ( $yearLoop = 1976; $yearLoop < $currentYear; $yearLoop++) :
-                        for ($seasonLoop = 0; $seasonLoop <= 1; $seasonLoop++) :
-*/                            while ( $wp_query->have_posts() ) : $wp_query->the_post(); 
-                                $staff_type = get_field('type');
-/*                                $startYear = substr(get_field('appledore_start_date'),-4,4);
-                                if (substr(get_field('appledore_start_date'),0,4) == "Spri") :
-                                    $startSeason = 0;
-                                else :
-                                    $startSeason = 1;
-                                endif;
-*/                              
-/*                                  if ($seasonLoop == get_field( 'startSeason' ) :
-                                    if ($yearLoop == $startYear) :
-*/                                        if ( $staff_type == $role ) : 
-                                            if ( ($role == "Head Bander" || $role == "Bander") && ( !($banders_found) ) ) : ?>
-                                                <h2>Banders</h2>
-                                                <?php $banders_found = true;
-                                            elseif ( ( $role == "Bandaide" ) && ( !($bandaides_found) ) ) : ?>
-                                                <h2>Bandaides</h2>
-                                                <?php $bandaides_found = true;
-                                            endif; 
-                                            if ($staff_type == "Head Bander") { $staff_type = "Bander"; } ?>
-                                            <div class="staff-profile">
-                                                <figure>
-                                                    <figcaption><h3><?php echo the_title(); ?>, <?php echo $role; ?></h3>
-                                                        <?php if ( (get_field('appledore_start_season') == 'Fall' ) || 
-                                                        (get_field('appledore_start_season') == 'Spring')) : ?>
-                                                    Since: <?php echo get_field('appledore_start_season') ?> <?php echo get_field('appledore_start_year'); ?></figcaption>
-                                                <?php else: ?>
-                                                    Since: <?php echo get_field('appledore_start_year'); ?></figcaption>
-                                                <?php endif; ?>
+                    while ( $wp_query->have_posts() ) : $wp_query->the_post(); 
+                        $staff_type = get_field('type');
+                        if ( $staff_type == $role ) : 
+                            if ( ($role == "Head Bander" || $role == "Bander") && ( !($banders_found) ) ) : ?>
+                                <h2>Banders</h2>
+                                <?php $banders_found = true;
+                            elseif ( ( $role == "Bandaide" ) && ( !($bandaides_found) ) ) : ?>
+                                <h2>Bandaides</h2>
+                                <?php $bandaides_found = true;
+                            endif; 
+                            if ($staff_type == "Head Bander") { $staff_type = "Bander"; } ?>
+                            <div class="staff-profile">
+                                <figure>
+                                    <figcaption><h3><?php echo the_title(); ?>, <?php echo $role; ?></h3>
+                                        <?php if ( (get_field('appledore_start_season') == 'Fall' ) || 
+                                        (get_field('appledore_start_season') == 'Spring')) : ?>
+                                    Since: <?php echo get_field('appledore_start_season') ?> <?php echo get_field('appledore_start_year'); ?></figcaption>
+                                <?php else: ?>
+                                    Since: <?php echo get_field('appledore_start_year'); ?></figcaption>
+                                <?php endif; ?>
 
-                                                    <img src="<?php echo get_field('picture'); ?>" alt="<php echo the_title();?>">
-                                                </figure>
-                                                <p><?php echo get_field('biographical_info'); ?></p>
-                                            </div>
-                                        <?php endif;
-/*                                    endif;
-                                endif;
-*/                            endwhile;
-//                        endfor;
-  //                  endfor;
+                                    <img src="<?php echo get_field('picture'); ?>" alt="<php echo the_title();?>">
+                                </figure>
+                                <p><?php echo get_field('biographical_info'); ?></p>
+                            </div>
+                        <?php endif;
+                    endwhile;
                 endforeach; ?>
             </div>
             <?php endif;
